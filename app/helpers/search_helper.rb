@@ -1,17 +1,19 @@
 module SearchHelper
 
   def classify(artist_info)
-    artist = {
-      name:       artist_info['name'],
-      summary:    artist_info['bio']['summary'],
-      url:        artist_info['url'],
-      image:      artist_info['image'][3]['content'],
-      tags:       artist_info['tags']['tag'].map{ |i| { name: i['name'], url: i['url'] } },
-      published:  artist_info['bio']['published'].to_date.strftime('%d %b, %Y'),
-      stats:      { listeners: artist_info['stats']['listeners'], playcount: artist_info['stats']['playcount'] }
-    }
+    artist = {}
+    artist[:name]      = artist_info['name']
+    artist[:summary]   = artist_info['bio']['summary'].present? ? artist_info['bio']['summary'] : ""
+    artist[:url]       = artist_info['url']
+    artist[:stats]     = { listeners: artist_info['stats']['listeners'], playcount: artist_info['stats']['playcount'] }
+    artist[:image]     = artist_info['image'][3].present? ? artist_info['image'][3]['content'] : ""
+    artist[:tags]      = artist_info['tags'].present? && artist_info['tags']['tag'].any? ? artist_info['tags']['tag'].map{ |i| { name: i['name'], url: i['url'] } } : []
+    artist[:published] = artist_info['bio']['published'].present? ? artist_info['bio']['published'].to_date.strftime('%d %b, %Y') : ""
 
-    similar = artist_info['similar']['artist'].map{ |i| { name: i['name'], image: i['image'][1]['content']  } }
+    similar = []
+    if artist_info['similar'].present? && artist_info['similar']['artist'].any?
+      similar = artist_info['similar']['artist'].map{ |i| { name: i['name'], image: i['image'][1]['content']  } }
+    end
 
     return artist, similar
   end
@@ -83,8 +85,10 @@ module SearchHelper
   end
 
   def published_at(date)
-    content_tag :span, class: "label label-info published-at" do
-      (content_tag(:i, class: "fa fa-calendar"){}).to_s + " " + date
+    if date.present?
+      content_tag :span, class: "label label-info published-at" do
+        (content_tag(:i, class: "fa fa-calendar"){}).to_s + " " + date
+      end
     end
   end
 
