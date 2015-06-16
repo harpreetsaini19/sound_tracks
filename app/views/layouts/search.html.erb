@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SoundTracks</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= yield :stylesheet_includes %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <%= nav_bar inverse: true, fixed: :top, responsive: true, brand: "Sound Tracks", brand_link: "#" do %>
+      <%= menu_group :pull => :right do %>
+        <p class="navbar-text">Signed in as <b><%= current_user.email %></b></p><%= menu_item "Log Out", destroy_user_session_path, :method => :delete %>
+      <%end%>
+  <% end %>
+  <div class="container" align="center">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <%= form_tag(root_url,method: "get" ) do %>
+            <div class="input-group">
+              <%= text_field_tag 'artist', nil, class: "form-control", maxlength: 100, placeholder: "Enter Artist Name" %>
+              <span class="input-group-btn">
+                <%= submit_tag "Explore", class: "btn btn-success"%>
+              </span>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-md-3"></div>        
+    </div>
+    <div class="blank-separator"></div>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-9"><%= yield%> </div>
+      <div class="col-md-1"></div>
+    </div>
+  </div>
+  <%= yield :javascript_includes %>
+</body>
+</html>

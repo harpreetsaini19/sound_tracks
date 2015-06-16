@@ -1,0 +1,63 @@
+div.blank-separator {
+  height: 30px;
+  display: block;
+}
+
+div.panel.recent-searches > div.panel-body{
+  overflow-y: auto;
+  height: 200px;
+}
+
+img.artist-image{
+  margin-right: 10px;
+  height: 180px;
+  width: 252px;
+}
+
+span.published-at{
+  position: absolute;
+  margin-left: -100px;
+  margin-top: 164px;
+}
+
+$font-size: 13px;
+$line-height: 1.4;
+$lines-to-show: 6;
+
+p.summary  {
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  max-width: 400px;
+  height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
+  margin: 0 auto;
+  font-size: $font-size;
+  line-height: $line-height;
+  -webkit-line-clamp: $lines-to-show;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+div.similar-artists {
+  display: inline-block;
+}
+
+div.similar-artist {
+  width: 120px;
+}
+
+div.similar-artist > img {
+  height: 64px;
+  width: 64px;
+}
+
+div.similar-artist > div {
+  max-width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+div.top-track {
+  height: 60px;
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SoundTracks</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= yield :javascript_includes %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <%= nav_bar inverse: true, fixed: :top, responsive: true, brand: "Sound Tracks", brand_link: "#" %>
+  <div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <%= display_flash %>
+          <%= yield %>
+        </div>
+        <div class="col-md-3"></div>        
+    </div>
+  </div>
+
+</body>
+</html>

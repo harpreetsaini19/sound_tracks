@@ -1,0 +1,27 @@
+<% content_for :stylesheet_includes do %>
+  <%= stylesheet_link_tag "search" %>
+<% end %>
+<%= display_flash %>
+<div class="row">
+  <div class="col-md-3">
+    <div class="panel panel-default recent-searches">
+      <div class="panel-heading">
+        <h4><%= t('.searches', :default => "Recent Searches") %></h4>
+      </div>
+      <div class="panel-body" align="left">
+        <%= recent_searches(@searches) %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <% if @artist_info 
+      artist, similar = classify(@artist_info)
+    %>
+      <%= artist_profile(artist) %> <hr/>
+      <%= similar_artists(similar) %> <hr/>
+    <% end %>
+    <% if @artist_top_tracks %>
+      <%= artist_top_tracks(@artist_top_tracks) %>
+    <% end %>
+  </div>
+</div>
