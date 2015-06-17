@@ -95,4 +95,10 @@ SoundTracks::Application.configure do
   password:             ENV['MAILER_PASSWORD'],
   authentication:       'plain',
   enable_starttls_auto: true  }
+
+  config.middleware.use ExceptionNotification::Rack, :email => {
+    :email_prefix => "Exception occurred",
+    :sender_address => %{"Exception Notifier" #{ENV['MAILER_USER_NAME']}},
+    :exception_recipients => [ENV['MAILER_USER_NAME']]
+  }
 end

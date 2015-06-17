@@ -10,6 +10,7 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+  gem 'exception_notification'
 end
 
 # Use SCSS for stylesheets
