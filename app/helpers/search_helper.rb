@@ -52,7 +52,7 @@ module SearchHelper
   end
 
   def recent_searches(searches)
-    searches.map{|i| (link_to i, { controller: "search", action: "index", artist: i}).to_s }.join("<br/>").html_safe
+    searches.map{|i| (link_to i, { controller: "search", action: "index", search: {artist_name: i}}).to_s }.join("<br/>").html_safe
   end
 
   private
@@ -104,7 +104,7 @@ module SearchHelper
                 (content_tag :div do
                   artist[:name]
                 end).to_s
-              end).to_s, { controller: "search", action: "index", artist: artist[:name]}
+              end).to_s, { controller: "search", action: "index", search: {artist_name: artist[:name]}}
   end
 
   def top_track(track)
