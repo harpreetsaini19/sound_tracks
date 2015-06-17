@@ -44,6 +44,7 @@ module SearchHelper
   end
 
   def artist_top_tracks(top_tracks)
+    top_tracks = [top_tracks] unless top_tracks.is_a?(Array)
     content_tag :div, class: "top-tracks", align: "left" do
       ((content_tag(:h3){ "Top Tracks" }).to_s + " " +
       (content_tag(:br){}).to_s +
